@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block body %}
+<title>Malla Ingenieria Mecatronica</title>
+  <style>
+    .materia {
+      display: block;
+      margin: 6px 0;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #f8c4d8; /* Rosado */
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .materia:hover {
+      background-color: #f48fb1; /* Rosado más oscuro */
+      color: white;
+    }
+    .materia.tachada {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    .semestre {
+      padding: 15px;
+      border-radius: 12px;
+      background: #fce4ec; /* Rosado claro */
+      margin: 10px;
+    }
+  </style>
+
+  <h1 class="text-center mb-4 mt-3">Malla Ingenieria Mecatronica</h1>
+  <div class="row">
+    {% for semestre, materias in malla.items() %}
+    <div class="col-md-3 semestre">
+      <h4 class="text-center">{{ semestre }}</h4>
+      {% for materia in materias %}
+      <div class="materia" onclick="toggleMateria(this)">
+        {{ materia }}
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function toggleMateria(el) {
+      el.classList.toggle("tachada");
+    }
+  </script>
+{% endblock %}
