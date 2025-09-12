@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 
-{% block title %}Malla {{ nombre }} {{ carrera | capitalize }}{% endblock %}
+{% block title %}Malla {{ nombre }}{% endblock %}
 
 {% block body %}
 <style>
@@ -21,6 +21,7 @@
     width: 100%;
     margin-bottom: 20px;
   }
+  
   .semestre {
     flex: 1 1 0;
     min-width: 0;
@@ -50,10 +51,31 @@
     text-decoration: line-through;
     opacity: 0.6;
   }
+  @media (max-width: 768px) {
+    .row-malla {
+      flex-direction: column;
+      align-items: center;
+    }
+    .semestre {
+      width: 80%;
+      margin-bottom: 20px;
+      min-height: 465px;
+      max-width: 430px;
+    }
+  }
+  @media (min-width: 769px) and (max-width: 1200px) {
+    .row-malla {
+      flex-wrap: wrap;
+    }
+    .semestre {
+      flex: 1 1 45%;
+      margin-bottom: 20px;
+    }
+  }
 </style>
 
 <div class="container-malla">
-  <h1 class="text-center my-4">Malla {{ nombre }} {{ carrera | capitalize }}</h1>
+  <h1 class="text-center my-4">Malla {{ nombre }}</h1>
   {% set semestres = malla.items()|list %}
   <div class="row-malla">
     {% for semestre, materias in semestres[:4] %}
